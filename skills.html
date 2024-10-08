@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My CV - Skills</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('vvv.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #ffffffaa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+        /* Skills Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 100px auto 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: rgba(255,255,255,0.2);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        input {
+            width: 70%;
+            padding: 8px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button.add-btn {
+            padding: 8px 15px;
+            margin-top: 10px;
+            border: none;
+            background-color: #ffc107;
+            color: #000;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button.add-btn:hover {
+            background-color: #e0a800;
+        }
+        /* Delete Button */
+        .delete-btn {
+            background-color: #dc3545;
+            border: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='personal.html'">Personal Info</button>
+        <button onclick="location.href='education.html'">Education</button>
+        <button onclick="location.href='work.html'">Work Experience</button>
+        <button onclick="location.href='skills.html'">Skills</button>
+        <button onclick="location.href='projects.html'">Projects</button>
+        <button onclick="location.href='contact.html'">Contact</button>
+    </div>
+
+    <!-- Skills Container -->
+    <div class="container">
+        <h2>Skills</h2>
+        <ul id="skillsList">
+            <!-- Existing skills will be listed here -->
+        </ul>
+        <input type="text" id="newSkill" placeholder="Add a new skill">
+        <button class="add-btn" onclick="addSkill()">Add Skill</button>
+    </div>
+
+    <script>
+        // Load existing skills
+        document.addEventListener('DOMContentLoaded', function() {
+            const skills = JSON.parse(localStorage.getItem('skills')) || [];
+            skills.forEach(skill => {
+                addSkillToList(skill);
+            });
+        });
+
+        // Add skill to the list and localStorage
+        function addSkill() {
+            const skillInput = document.getElementById('newSkill');
+            const skill = skillInput.value.trim();
+            if (skill === '') return;
+            addSkillToList(skill);
+            skillInput.value = '';
+
+            let skills = JSON.parse(localStorage.getItem('skills')) || [];
+            skills.push(skill);
+            localStorage.setItem('skills', JSON.stringify(skills));
+        }
+
+        function addSkillToList(skill) {
+            const li = document.createElement('li');
+            li.textContent = skill;
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.onclick = function() {
+                removeSkill(skill, li);
+            };
+
+            li.appendChild(deleteBtn);
+            document.getElementById('skillsList').appendChild(li);
+        }
+
+        function removeSkill(skill, liElement) {
+            let skills = JSON.parse(localStorage.getItem('skills')) || [];
+            skills = skills.filter(s => s !== skill);
+            localStorage.setItem('skills', JSON.stringify(skills));
+            liElement.remove();
+        }
+    </script>
+</body>
+</html>

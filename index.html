@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My CV - Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('vvv.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #ffffffaa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+        /* Main Content */
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* To prevent overlap with navbar */
+        }
+        .content h1 {
+            font-size: 60px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='personal.html'">Personal Info</button>
+        <button onclick="location.href='education.html'">Education</button>
+        <button onclick="location.href='work.html'">Work Experience</button>
+        <button onclick="location.href='skills.html'">Skills</button>
+        <button onclick="location.href='projects.html'">Projects</button>
+        <button onclick="location.href='contact.html'">Contact</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome to Jennifer's website, please use the navigation buttons to access more information about me</h1>
+    </div>
+</body>
+</html>

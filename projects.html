@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My CV - Projects</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('vvv.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #ffffffaa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+        /* Form Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 100px auto 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        .project-entry {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #555;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button.save-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #6f42c1;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button.save-btn:hover {
+            background-color: #5936a8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='personal.html'">Personal Info</button>
+        <button onclick="location.href='education.html'">Education</button>
+        <button onclick="location.href='work.html'">Work Experience</button>
+        <button onclick="location.href='skills.html'">Skills</button>
+        <button onclick="location.href='projects.html'">Projects</button>
+        <button onclick="location.href='contact.html'">Contact</button>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container">
+        <h2>Projects</h2>
+        <form id="projectsForm">
+            <div class="project-entry">
+                <label for="project1">Project Title:</label>
+                <input type="text" id="project1" required>
+
+                <label for="descriptionProject1">Description:</label>
+                <textarea id="descriptionProject1" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="save-btn">Save Project</button>
+        </form>
+    </div>
+
+    <script>
+        // Load existing project data
+        document.addEventListener('DOMContentLoaded', function() {
+            const project = localStorage.getItem('project1') || '';
+            const description = localStorage.getItem('descriptionProject1') || '';
+
+            document.getElementById('project1').value = project;
+            document.getElementById('descriptionProject1').value = description;
+        });
+
+        // Save project data to localStorage
+        document.getElementById('projectsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('project1', document.getElementById('project1').value);
+            localStorage.setItem('descriptionProject1', document.getElementById('descriptionProject1').value);
+            alert('Project Information Saved!');
+        });
+    </script>
+</body>
+</html>

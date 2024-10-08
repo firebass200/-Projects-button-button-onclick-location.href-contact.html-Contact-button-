@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My CV - Contact</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('vvv.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #ffffffaa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #ffffff;
+            transform: scale(1.1);
+        }
+        /* Form Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 100px auto 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button.send-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #dc3545;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button.send-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button onclick="location.href='index.html'">Home</button>
+        <button onclick="location.href='personal.html'">Personal Info</button>
+        <button onclick="location.href='education.html'">Education</button>
+        <button onclick="location.href='work.html'">Work Experience</button>
+        <button onclick="location.href='skills.html'">Skills</button>
+        <button onclick="location.href='projects.html'">Projects</button>
+        <button onclick="location.href='contact.html'">Contact</button>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <label for="contactName">Your Name:</label>
+            <input type="text" id="contactName" required>
+
+            <label for="contactEmail">Your Email:</label>
+            <input type="email" id="contactEmail" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" rows="5" required></textarea>
+
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+        // Load existing contact data
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactName = localStorage.getItem('contactName') || '';
+            const contactEmail = localStorage.getItem('contactEmail') || '';
+            const message = localStorage.getItem('message') || '';
+
+            document.getElementById('contactName').value = contactName;
+            document.getElementById('contactEmail').value = contactEmail;
+            document.getElementById('message').value = message;
+        });
+
+        // Save contact data to localStorage
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('contactName', document.getElementById('contactName').value);
+            localStorage.setItem('contactEmail', document.getElementById('contactEmail').value);
+            localStorage.setItem('message', document.getElementById('message').value);
+            alert('Contact Information Saved!');
+        });
+    </script>
+</body>
+</html>
